@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Return Book
+  p
+    strong Book Title:
+    p #{loan.Book.title}
+  p
+    strong Loaned By:
+    p #{loan.Patron.first_name + " " + loan.Patron.last_name}
+  p
+    strong Loaned On:
+    p #{formatDate(loan.loaned_on)}
+  p
+    strong Return By:
+    p #{formatDate(loan.return_by)}
+  form(action=`/loans/${loan.id}` method="post")
+    div(class="form-group")
+      label(for="returned_on") Returned On:
+        input(id="returned_on" type="date" class="form-control" name="returned_on" value=today)
+    button(class="btn btn-warning" type="submit") Return Book

@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    link(href="/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    include nav
+    block content
+    if errors
+      h2.error Oooops!
+      ul.error
+        each error in errors
+          li #{error.message}
+
+
+    script(src="/jquery/dist/jquery.min.js")
+    script(src="/bootstrap/dist/js/bootstrap.min.js")

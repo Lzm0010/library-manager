@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 New Book
+  form(action="/books/new" method="post")
+    div(class="form-group")
+      label(for="title") Title
+        input(id="title" type="text" class="form-control" name="title")
+    div(class="form-group")
+      label(for="author") Author
+        input(id="author" type="text" class="form-control" name="author")
+    div(class="form-group")
+      label(for="genre") Genre
+        input(id="genre" type="text" class="form-control" name="genre")
+    div(class="form-group")
+      label(for="first_published") First Published
+        input(id="first_published" type="text" class="form-control" name="first_published")
+    button(type="submit" class="btn btn-info") Create New Book

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1 New Patron
+  form(action="/patrons/new" method="post")
+    div(class="form-group")
+      label(for="first_name") First Name
+        input(id="first_name" type="text" class="form-control" name="first_name")
+    div(class="form-group")
+      label(for="last_name") Last Name
+        input(id="last_name" type="text" class="form-control" name="last_name")
+    div(class="form-group")
+      label(for="address") Address
+        input(id="address" type="text" class="form-control" name="address")
+    div(class="form-group")
+      label(for="email") Email
+        input(id="email" type="text" class="form-control" name="email")
+    div(class="form-group")
+      label(for="library_id") Library ID
+        input(id="library_id" type="text" class="form-control" name="library_id")
+    div(class="form-group")
+      label(for="zip_code") Zip Code
+        input(id="zip_code" type="text" class="form-control" name="zip_code")
+    button(type="submit" class="btn btn-info") Create New Patron

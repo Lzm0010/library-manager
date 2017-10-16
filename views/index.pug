@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+  div(class="well") Welcome to #{title}
+    h3 Books:
+    ul
+      li
+        a(href="/books/new") New Book
+      li
+        a(href="/books") All Books
+      li
+        a(href="/books?filter=overdue") Overdue Books
+      li
+        a(href="/books?filter=checked_out") Checked out Books
+
+    h3 Patrons:
+    ul
+      li
+        a(href="/patrons/new") New Patron
+      li
+        a(href="/patrons") All Patrons
+
+    h3 Loans:
+    ul
+      li
+        a(href="/loans/new") New Loan
+      li
+        a(href="/loans") All Loans
+      li
+        a(href="/loans?filter=overdue") Overdue Loans
+      li
+        a(href="/loans?filter=checked_out") Checked out Loans

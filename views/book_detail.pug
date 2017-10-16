@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1 Book:
+  form(action=`/books/${book.id}` method="post")
+    div(class="form-group")
+      label(for="title") Title
+        input(id="title" type="text" class="form-control" name="title" value=book.title)
+    div(class="form-group")
+      label(for="author") Author
+        input(id="author" type="text" class="form-control" name="author" value=book.author)
+    div(class="form-group")
+      label(for="genre") Genre
+        input(id="genre" type="text" class="form-control" name="genre" value=book.genre)
+    div(class="form-group")
+      label(for="first_published") First Published
+        input(id="first_published" type="text" class="form-control" name="first_published" value=book.first_published)
+    button(type="submit" class="btn btn-info") Update Book
+
+  h2 Loan History
+  table(class="table table-striped")
+    thead
+      tr
+        th Book
+        th Patron
+        th Loaned on
+        th Return by
+        th Returned on
+        th Action
+    tbody
+    for loan in loans
+      tr
+        td= book.title
+        td
+          a(href=`/patrons/${loan.Patron.id}`)= loan.Patron.first_name + " " + loan.Patron.last_name
+        td= formatDate(loan.loaned_on)
+        td= formatDate(loan.return_by)
+        if loan.returned_on
+          td= formatDate(loan.returned_on)
+        else
+          td
+        td
+          unless loan.returned_on
+            a(href=`/loans/${loan.id}`) Return Book

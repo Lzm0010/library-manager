@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 New Loan
+  form(action="/loans/new" method="post")
+    div(class="form-group")
+      label(for="book_id") Book
+        select(id="book_id" class="form-control" name="book_id")
+          for book in books
+            option(value=book.id)= book.title
+    div(class="form-group")
+      label(for="patron_id") Patron
+        select(id="patron_id" class="form-control" name="patron_id")
+          for patron in patrons
+            option(value=patron.id)= patron.first_name + " " + patron.last_name
+    div(class="form-group")
+      label(for="loaned_on") Loaned On
+        input(id="loaned_on" type="date" class="form-control" name="loaned_on" value=today)
+    div(class="form-group")
+      label(for="return_by") Return By
+        input(id="return_by" type="date" class="form-control" name="return_by" value=sevenDaysFromNow)
+    button(type="submit" class="btn btn-info") Create New Loan

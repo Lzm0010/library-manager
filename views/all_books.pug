@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Books
+  p
+    a(href="/books/new" class="btn btn-info") Create New Book
+  p Filters
+    a(href="/books")  All
+    span  |
+    a(href="/books?filter=overdue")  Overdue
+    span  |
+    a(href="/books?filter=checked_out")  Checked Out
+  table(class="table table-striped")
+    thead
+      tr
+        th  Title
+        th  Author
+        th  Genre
+        th  Year Released
+    tbody
+    for book in books
+      tr(data-id=`${book.id}`)
+        td
+          a(href=`/books/${book.id}`)=  book.title
+        td=  book.author
+        td=  book.genre
+        td=  book.first_published

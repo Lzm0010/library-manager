@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  h1 Patron:
+  form(action=`/patrons/${patron.id}` method="post")
+    div(class="form-group")
+      label(for="first_name") First Name
+        input(id="first_name" type="text" class="form-control" name="first_name" value=patron.first_name)
+    div(class="form-group")
+      label(for="last_name") Last Name
+        input(id="last_name" type="text" class="form-control" name="last_name" value=patron.last_name)
+    div(class="form-group")
+      label(for="address") Address
+        input(id="address" type="text" class="form-control" name="address" value=patron.address)
+    div(class="form-group")
+      label(for="email") Email
+        input(id="email" type="text" class="form-control" name="email" value=patron.email)
+    div(class="form-group")
+      label(for="library_id") Library ID
+        input(id="library_id" type="text" class="form-control" name="library_id" value=patron.library_id)
+    div(class="form-group")
+      label(for="zip_code") Zip Code
+        input(id="zip_code" type="text" class="form-control" name="zip_code" value=patron.zip_code)
+    button(type="submit" class="btn btn-info") Update Patron
+
+  h2 Loan History
+  table(class="table table-striped")
+    thead
+      tr
+        th Book
+        th Patron
+        th Loaned on
+        th Return by
+        th Returned on
+        th Action
+    tbody
+    for loan in loans
+      tr
+        td
+          a(href=`/books/${loan.Book.id}`)= loan.Book.title
+        td= patron.first_name + " " + patron.last_name
+        td= formatDate(loan.loaned_on)
+        td= formatDate(loan.return_by)
+        if loan.returned_on
+          td= formatDate(loan.returned_on)
+        else
+          td
+        td
+          unless loan.returned_on
+            a(href=`/loans/${loan.id}`) Return Book

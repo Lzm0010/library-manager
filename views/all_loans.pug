@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1 Loans
+  p
+    a(href="/loans/new" class="btn btn-info") Create New Loan
+  p  Filters
+    a(href="/loans")  All
+    span  |
+    a(href="/loans?filter=overdue")  Overdue
+    span  |
+    a(href="/loans?filter=checked_out")  Checked Out
+  table(class="table table-striped")
+    thead
+      tr
+        th Book
+        th Patron
+        th Loaned on
+        th Return by
+        th Returned on
+        th Action
+    tbody
+    for loan in loans
+      tr
+        td
+          a(href=`/books/${loan.Book.id}`)= loan.Book.title
+        td
+          a(href=`/patrons/${loan.Patron.id}`)= loan.Patron.first_name + " " + loan.Patron.last_name
+        td= formatDate(loan.loaned_on)
+        td= formatDate(loan.return_by)
+        if loan.returned_on
+          td= formatDate(loan.returned_on)
+        else
+          td
+        td
+          unless loan.returned_on
+            a(href=`/loans/${loan.id}` class="btn btn-info") Return Book

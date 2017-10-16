@@ -1,0 +1,22 @@
+{
+  "name": "library-manager-v1",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Lee McCormick <lzm0010@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "moment": "^2.18.1"
+  }
+}
