@@ -71,7 +71,7 @@ router.get('/:id', function(req, res, next){
       }
     })
     .catch(err => {
-      res.send(500);
+      res.send(404);
     });
 });
 

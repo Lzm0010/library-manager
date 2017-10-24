@@ -3,8 +3,6 @@ var express = require('express');
 var router = express.Router();
 var formatDate = require('../utils/utils');
 
-let filter;
-
 /* GET books listing. */
 router.get('/', function(req, res, next) {
   if(req.query.filter === "overdue"){
@@ -106,18 +104,18 @@ router.get('/:id', function(req, res, next) {
 
   Promise.all([bookQuery, loansQuery])
     .then(results => {
-      if(results){
+      if(results[0].id){
         res.render('book_detail', {
           book: results[0],
           loans: results[1],
           formatDate
         });
       } else {
-        res.send(404);
+        return res.sendStatus(404);
       }
     })
     .catch(err => {
-      res.send(500);
+      res.send(404);
     });
 
 });

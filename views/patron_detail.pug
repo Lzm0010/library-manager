@@ -39,10 +39,10 @@ block content
         td
           a(href=`/books/${loan.Book.id}`)= loan.Book.title
         td= patron.first_name + " " + patron.last_name
-        td= formatDate(loan.loaned_on)
-        td= formatDate(loan.return_by)
+        td= loan.loaned_on
+        td= loan.return_by
         if loan.returned_on
-          td= formatDate(loan.returned_on)
+          td= loan.returned_on
         else
           td
         td
